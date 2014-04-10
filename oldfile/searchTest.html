@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>纽约时报中文网</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script>
+		var cp={};
+			cp.cb=function(data){
+				console.dir(data);
+				this.sc.remove();
+			};
+		$(document).ready(function(){
+			$("#ok").click(function(){
+				var d=$("<script/>",{"name":"ffee",src:"http://cse.cn.nytimes.com/svc/cse/v2/sitesearch.jsonp?callback=cp.cb&&query=%E5%9B%BD%E9%99%85"});
+					$("head").append(d);
+					cp.sc=d;
+					return false;
+				$.getJSON("http://cse.cn.nytimes.com/svc/cse/v2/sitesearch.jsonp?callback=abc&&query=%E5%9B%BD%E9%99%85",function(data){
+					alert(data);
+				});
+				return false;
+			});	
+		});
+	</script>
+    <style rel="stylesheet" type="text/css">
+    </style>
+</head>
+<body>
+	<img class="logo" src="http://www01.prd.apn1.nytimes.com/img/nameplate.gif">
+	<input id="word"><input id="ok" type="button" value="ok">
+</body>
+</html>

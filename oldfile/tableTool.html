@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<style>
+			#show table{
+			}
+			.valueBox,.showBox{
+				width:802px;
+				margin:0 auto;
+				overflow:hidden;
+			}
+			.valueBox #DOMValue{
+				margin-top:50px;
+				width:800px;
+				border:1px solid #ddd;
+				height:200px;
+				overflow:scroll;
+			}
+			.valueBox input{
+				width:100px;
+				height:30px;
+				margin:10px 0 0 360px;
+			}
+			#DOMBox{
+				margin-top:30px;
+				border:1px solid #ddd;
+				width:796px;
+			}
+		</style>
+		<script>
+			var te;
+			$(document).ready(function(){
+				$("#do").click(function(){
+					var text=createDOMText();
+					$("#DOMBox").text(text);
+					$("#DOMBox").select();
+				});
+				$("#view").click(function(){
+					$("#show").html($("#DOMBox").val());
+				});
+			});
+			function createDOMText(){
+				var htmlText;
+				var val=$("#DOMValue").html();
+				var tempDiv=$("<div/>");
+					tempDiv.append(val);
+				var table=tempDiv.find("table");
+					table.removeAttr("class");
+					table.attr("class","boxofficeTable");
+					table.attr("border",1);
+					table.attr("cellspacing",0);
+					table.attr("cellpadding",5);
+					table.attr("width","100%");
+					table.attr("style","text-align:center;font-size:12px;cursor:default;border:1px solid #666;");
+				var tr=table.find("tr");
+					tr.removeAttr("style");
+					tr.removeAttr("width");
+				var td=tr.find("td");
+					td.removeAttr("style");
+					td.removeAttr("width");
+					td.each(function(){
+						var text=$(this).text();
+						$(this).html("").append(text);
+					});
+				var temp=$("<div/>");
+					temp.append(table);
+					htmlText=temp.html()+"<br/>";
+					htmlText=htmlText.replace(/(\s)+/g, ' ');
+				return htmlText;
+			}
+		</script>
+	</head>
+	<body>
+		<div class="valueBox">
+			<h3>使用方法：</h3>
+			<p style="font-size:12px;line-height:20px;color:#a3a3a3;">
+				1.打开您要转换的doc 文档。<br/>
+				2.选中要转换的表格 ctrl＋c复制。<br/>
+				3.粘贴到上边的输入框内。<br/>
+				4.点击 create HTML 按钮。<br/>
+				5.第二个文本框会出现创建好的HTML源码,可作修改。<br/>
+				6.点击view按钮，可查看代码生成的表格样式。<br/>
+			</p>
+			<div id="DOMValue" contentEditable=true ></div>
+			<input id="do" value="create HTML" type="button" />
+		</div>
+		<div class="showBox">
+			<textarea id="DOMBox" ></textarea>
+			<input id="view" value="view" type="button" style="float:right;" />
+			<div id="show" contentEditable=true></div>
+		</div>
+	</body>
+</html>
