@@ -40,6 +40,6 @@ function createNgrok(){
             port: 3000
     }, function (err, url) {
             // https://susanna.ngrok.com -> 127.0.0.1:8080 with http auth required
-            console.log(url);
+            console.log(err,url);
     });
 }
