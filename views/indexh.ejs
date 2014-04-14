@@ -3,12 +3,9 @@
     <head>
         <script src="/socket.io/socket.io.js"></script>
         <link href="/css/a.css" rel="stylesheet" />
-        <script>
-            var socket = io.connect('http://songsong.ngrok.com');
-                socket.on('news', function (data) {
-                    socket.emit('my other event', { my: 'data' });
-                });
-        </script>
+        <script data-main="/js/index.js" src="/js/vendor/require-jquery.js"></script>
+        <title><%= title %></title>
+        <meta id="page_data_websocketUrl" value="<%= websocketURL %>"/>
     </head>
     <body>
     </body>

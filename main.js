@@ -1,45 +1,40 @@
 var ngrok = require('ngrok');
 
-var express=require('express');
-var app=express();
 var http=require("http");
-var ejs=require("ejs");
-
+var express=require('express'),
+    app=express(),
+    ejs=require("ejs");
+var router=require("./router");
+var control=require("./control");
 var socketIO= require('socket.io');
 
+var listenPort=3000;
+var staticData=require("./model").staticData;
 
-app.use(express.static(__dirname + '/public'));
+
+router.init(app);
 
 //config ejs
+app.use(express.static(__dirname + '/public'));
 app.set("view engine","ejs");
 app.set("views",__dirname+"/views");
-
 app.engine('html', require('ejs').renderFile);
-app.get("/",function(req,res){
-    res.render("indexh",{"title":"fsdf"});
-});
-var server=app.listen(3000,function(){
+
+control.initNgrok(listenPort);
+
+
+
+var server=app.listen(listenPort,function(){
     console.log("http server ok");
-    createNgrok();
+    //createNgrok();
 });
 
 var io=socketIO.listen(server);
 
 io.sockets.on('connection', function (socket) {
+    console.log("fddf");
     socket.emit('news', { hello: 'world' });
     socket.on('my other event', function (data) {
-    console.log(data);
     });
 });
 
-function createNgrok(){
-    ngrok.connect({
-            authtoken: 'yDxpzny8uAvrY1vvdnAT',
-            subdomain: 'songsong',
-            httpauth: 'song:song',
-            port: 3000
-    }, function (err, url) {
-            // https://susanna.ngrok.com -> 127.0.0.1:8080 with http auth required
-            console.log(err,url);
-    });
-}
