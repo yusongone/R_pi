@@ -20,6 +20,12 @@ app.set("view engine","ejs");
 app.set("views",__dirname+"/views");
 app.engine('html', require('ejs').renderFile);
 
+app.get("/test",function(req,res){
+    console.log(req.get("User-Agent"));
+    var ua=req.headers['user-agent'];
+    console.log("ff",ua);
+});
+
 control.initNgrok(listenPort);
 
 
@@ -28,6 +34,7 @@ var server=app.listen(listenPort,function(){
     console.log("http server ok");
     //createNgrok();
 });
+
 
 var io=socketIO.listen(server);
 

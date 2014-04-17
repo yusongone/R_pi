@@ -4,7 +4,7 @@ var staticData=require("../../model").staticData;
 exports.createNgrok=function(httpPort){
     ngrok.connect({
             authtoken: 'yDxpzny8uAvrY1vvdnAT',
-            subdomain: 'ssfftt',
+            subdomain: 'mac_song',
             //httpauth: 'song:song',
             port:httpPort 
     }, function (err, url) {
