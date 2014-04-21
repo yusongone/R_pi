@@ -2,6 +2,7 @@ var ngrok = require('ngrok');
 
 var http=require("http");
 var express=require('express'),
+	bodyParser=require('body-parser'),
     app=express(),
     ejs=require("ejs");
 var router=require("./router");
@@ -12,7 +13,7 @@ var listenPort=3000;
 var staticData=require("./model").staticData;
 
 
-router.init(app);
+app.use(bodyParser());
 
 //config ejs
 app.use(express.static(__dirname + '/public'));
@@ -27,6 +28,7 @@ app.get("/test",function(req,res){
 });
 
 control.initNgrok(listenPort);
+router.init(app);
 
 
 

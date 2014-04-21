@@ -5,7 +5,7 @@ exports.createNgrok=function(httpPort){
     ngrok.connect({
             authtoken: 'yDxpzny8uAvrY1vvdnAT',
             subdomain: 'mac_song',
-            //httpauth: 'song:song',
+            httpauth: 'song:song',
             port:httpPort 
     }, function (err, url) {
             // https://susanna.ngrok.com -> 127.0.0.1:8080 with http auth required

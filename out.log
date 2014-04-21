@@ -1,0 +1,10 @@
+info: socket.io started
+warn: error raised: Error: listen EADDRINUSE
+[Error: ngrok: The tunnel http://ssfftt.ngrok.com is alreanull 'tcp://ngrok.com:54024'
+null 'tcp://ngrok.com:40306'
+null 'tcp://ngrok.com:40306'
+null 'tcp://ngrok.com:54024'
+null 'tcp://ngrok.com:54024'
+null 'tcp://ngrok.com:54024'
+ 'tcp://ngrok.com:32890'
+null 'tcp://ngrok.com:32890'
