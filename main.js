@@ -20,6 +20,10 @@ app.use(express.static(__dirname + '/public'));
 app.set("view engine","ejs");
 app.set("views",__dirname+"/views");
 app.engine('html', require('ejs').renderFile);
+control.mp3Player.readMp3List();
+//control.mp3Player.play(0);
+
+
 
 app.get("/test",function(req,res){
     console.log(req.get("User-Agent"));

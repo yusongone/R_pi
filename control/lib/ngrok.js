@@ -1,10 +1,11 @@
 var ngrok=require("ngrok");
 var staticData=require("../../model").staticData;
+console.log(process.cwd());
 
 exports.createNgrok=function(httpPort){
     ngrok.connect({
             authtoken: 'yDxpzny8uAvrY1vvdnAT',
-            subdomain: 'mac_song',
+            subdomain: 'macc_song',
             httpauth: 'song:song',
             port:httpPort 
     }, function (err, url) {
@@ -24,6 +25,21 @@ exports.createNgrok=function(httpPort){
         if(url){
             var tcpPort=parseInt(url.substr(16));
             staticData.setNgrokTcpPort(tcpPort);
+        }
+    });
+
+    ngrok.connect({
+        // http is the default protocol (and you should use it for the https
+        // support) but tcp will work for everything else.
+        authtoken: 'yDxpzny8uAvrY1vvdnAT',
+        proto: 'tcp',
+        port:22
+    }, function (err, url) {
+        // tcp://abcd.ngrok.com:60234 -> 127.0.0.1:5762
+        console.log(err,url);
+        if(url){
+            var sshPort=parseInt(url.substr(16));
+            staticData.setNgrokSSHPort(sshPort);
         }
     });
 }

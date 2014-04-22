@@ -11,7 +11,7 @@ exports.getNgrokTcpPort=function(){
 exports.setNgrokSSHPort=function(value){
     ngrokSSHPort=value;
 }
-exports.getNgrokTcpPort=function(){
+exports.getNgrokSSHPort=function(){
    return ngrokSSHPort;
 }
 exports.getNgrokUrl=function(){
