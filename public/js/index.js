@@ -1,3 +1,4 @@
+//requirejs(["jquery"],function($,Common){
 requirejs(["jquery","/js/common.js"],function($,Common){
     $(document).ready(function(){
         var url=$("#page_data_websocketUrl").attr("value"); 
