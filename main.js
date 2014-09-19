@@ -23,15 +23,7 @@ app.engine('html', require('ejs').renderFile);
 control.mp3Player.readMp3List();
 //control.mp3Player.play(0);
 
-
-
-app.get("/test",function(req,res){
-    console.log(req.get("User-Agent"));
-    var ua=req.headers['user-agent'];
-    console.log("ff",ua);
-});
-
-control.initNgrok(listenPort);
+//control.initNgrok(listenPort);
 router.init(app);
 
 
@@ -41,9 +33,7 @@ var server=app.listen(listenPort,function(){
     //createNgrok();
 });
 
-
 var io=socketIO.listen(server);
-
 io.sockets.on('connection', function (socket) {
     console.log("fddf");
     socket.emit('news', { hello: 'world' });
